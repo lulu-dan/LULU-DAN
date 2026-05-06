@@ -1,4 +1,4 @@
-# 语音转写与角色分离工具（simgcl 环境复现版）
+# 语音转写与角色分离工具
 
 本项目基于 Python + Gradio，调用讯飞 `raasr` 接口实现音视频转写、角色分离、时间轴对齐，以及网页内二次校对导出。
 
@@ -28,8 +28,7 @@
 
 - 操作系统：Windows 10/11（项目当前在 Win32 验证）
 - Conda：推荐 Miniconda/Anaconda
-- 目标环境名：`simgcl`
-- Python 精确版本：`3.10.19`
+- Python 版本：`3.10.19`
 - FFmpeg：`8.0.1`（建议 conda 安装，避免 PATH 问题）
 
 ### 2.2 创建并激活环境
@@ -119,7 +118,7 @@ python xunfei-asr.py
 
 ## 6. 复现自检清单（建议逐项核对）
 
-1. `conda activate simgcl` 后执行 `python --version` 为 `3.10.19`
+1. `python --version` 为 `3.10.19`
 2. `pip show gradio pydub python-dotenv requests` 版本分别为 `6.13.0 / 0.25.1 / 1.2.2 / 2.32.5`
 3. `ffmpeg -version` 可正常输出
 4. 根目录 `.env` 存在且键名为 `XUNFEI_APPID`、`XUNFEI_API_SECRET`
@@ -141,21 +140,3 @@ python xunfei-asr.py
 
 - 端口冲突  
   修改 `demo.launch(server_name="127.0.0.1", server_port=7860, ...)` 中端口后重启。
-
----
-
-## 8. 可选：导出完整环境快照（用于长期归档）
-
-若你希望团队成员“一键复刻你当前机器上的完整 simgcl 环境”（包括与本项目无关的包），可在当前机器执行：
-
-```powershell
-conda activate simgcl
-conda env export -n simgcl > simgcl.full.yml
-```
-
-其他机器复刻：
-
-```powershell
-conda env create -f simgcl.full.yml
-conda activate simgcl
-```
